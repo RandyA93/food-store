@@ -1,22 +1,21 @@
 <?php
 Class Pages extends Controller{
-    private $postModel;
+    private $employeeModel;
 
     public function __construct(){
-
+        $this->employeeModel = $this->model("Employee");
     } 
     public function index(){
-
         $data = [
             "title" => "home"
         ];
         $this->view("pages/index", $data);
     }
     public function about(){
+        $employees = $this->employeeModel->getEmployees();
         $data = [
             "title" => "about"
-
-
+            ,"employees"=>$employees
         ];
         $this->view("pages/about", $data);
     }
